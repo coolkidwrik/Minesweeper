@@ -1,6 +1,6 @@
-import {IState} from "./IState";
+import {ISquareState} from "./ISquareState";
 
-class NumberState implements IState {
+class NumberState implements ISquareState {
     private number: number;
 
     constructor(number: number) {

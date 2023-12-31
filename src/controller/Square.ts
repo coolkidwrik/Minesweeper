@@ -1,9 +1,10 @@
-import {IState} from "./IState";
+import {ISquareState} from "./ISquareState";
 
-class Square {
-    private state: IState;
+export class Square {
+    // TODO: Need to implement this class first!!
+    private state: ISquareState;
 
-    constructor(initialState: IState) {
+    constructor(initialState: ISquareState) {
         this.state = initialState;
     }
 
@@ -13,7 +14,7 @@ class Square {
     }
 
     // Method to change the state of the square
-    changeState(newState: IState): void {
+    changeState(newState: ISquareState): void {
         this.state = newState;
     }
 }

@@ -1,9 +1,11 @@
 import {ISubject} from "./ISubject";
 import {IObserver} from "./IObserver";
+import {Square} from "./Square";
 
 class Game implements ISubject {
     private state: any;
     private observers: IObserver[] = [];
+    private board: Square[][];
 
     addObserver(observer: IObserver): void {
         this.observers.push(observer);
