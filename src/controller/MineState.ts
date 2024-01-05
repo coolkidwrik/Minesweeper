@@ -1,6 +1,6 @@
 import {ISquareState} from "./ISquareState";
 
-class MineState implements ISquareState {
+export class MineState implements ISquareState {
     reveal(): string {
         return 'Mine!';
     }

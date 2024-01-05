@@ -1,14 +1,37 @@
 import {IGameState} from "./IGameState";
 import {Square} from "./Square";
+import {NumberState} from "./NumberState";
+import {MineState} from "./MineState";
 
-class EasyGameState implements IGameState {
+export class EasyGameState implements IGameState {
 
     rows: number = 8;
     cols: number = 10;
     numMines: number = 10;
-    generateBoard(): Square[][] {
+
+    constructor() {
         // TODO
-        return [];
+        return this;
+    }
+
+    generateBoard(): Square[][] {
+        const board: Square[][] = Array.from({ length: this.rows }, () =>
+            Array.from({ length: this.cols }, () => new Square(new NumberState(0)))
+        );
+
+        // Place mines randomly on the board
+        let minesPlaced = 0;
+        while (minesPlaced < this.numMines) {
+            const randomRow = Math.floor(Math.random() * this.rows);
+            const randomCol = Math.floor(Math.random() * this.cols);
+
+            if (!(board[randomRow][randomCol].getState() instanceof MineState)) {
+                board[randomRow][randomCol].changeState(new MineState());
+                minesPlaced++;
+            }
+        }
+
+        return board;
     }
 
 }

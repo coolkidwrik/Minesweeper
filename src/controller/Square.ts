@@ -1,7 +1,6 @@
 import {ISquareState} from "./ISquareState";
 
 export class Square {
-    // TODO: Need to implement this class first!!
     private state: ISquareState;
 
     constructor(initialState: ISquareState) {
@@ -11,6 +10,10 @@ export class Square {
     // Method to reveal the square, delegates to the current state
     reveal(): string {
         return this.state.reveal();
+    }
+
+    getState(): ISquareState {
+        return this.state
     }
 
     // Method to change the state of the square

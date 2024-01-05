@@ -1,6 +1,6 @@
 import {ISquareState} from "./ISquareState";
 
-class NumberState implements ISquareState {
+export class NumberState implements ISquareState {
     private number: number;
 
     constructor(number: number) {

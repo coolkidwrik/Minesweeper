@@ -1,11 +1,20 @@
 import {ISubject} from "./ISubject";
 import {IObserver} from "./IObserver";
 import {Square} from "./Square";
+import {IGameState} from "./IGameState";
+import {EasyGameState} from "./EasyGameState";
+import {MediumGameState} from "./MediumGameState";
+import {HardGameState} from "./HardGameState";
 
 class Game implements ISubject {
-    private state: any;
+    private state: IGameState;
     private observers: IObserver[] = [];
     private board: Square[][];
+
+    constructor(newState: string) {
+        this.setState(newState);
+        this.board = this.generateBoard();
+    }
 
     addObserver(observer: IObserver): void {
         this.observers.push(observer);
@@ -25,9 +34,18 @@ class Game implements ISubject {
         return this.state;
     }
 
-    // Set the state and notify observers
-    setState(newState: any): void {
-        this.state = newState;
-        this.notifyObservers();
+    private generateBoard(): Square[][] {
+        return this.state.generateBoard();
+    }
+
+    // Set the state
+    private setState(newState: string): void {
+        if(newState === "Easy") {
+            this.state = new EasyGameState();
+        } else if(newState === "Medium") {
+            this.state = new MediumGameState();
+        } else {
+            this.state = new HardGameState();
+        }
     }
 }
