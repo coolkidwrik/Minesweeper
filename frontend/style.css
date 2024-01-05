@@ -1,0 +1,19 @@
+#minesweeper-board {
+    display: grid;
+    grid-template-columns: repeat(10, 30px); /* Adjust based on your board size */
+    gap: 2px;
+}
+
+.square {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.square:hover {
+    background-color: #eee;
+}

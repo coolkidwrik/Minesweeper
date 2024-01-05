@@ -16,6 +16,10 @@ export class Square {
         return this.state
     }
 
+    click(): void {
+        this.state.click();
+    }
+
     // Method to change the state of the square
     changeState(newState: ISquareState): void {
         this.state = newState;

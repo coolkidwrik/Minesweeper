@@ -6,8 +6,8 @@ import {EasyGameState} from "./EasyGameState";
 import {MediumGameState} from "./MediumGameState";
 import {HardGameState} from "./HardGameState";
 
-class Game implements ISubject {
-    private state: IGameState;
+export class Game implements ISubject {
+    private state: any; //IGameState
     private observers: IObserver[] = [];
     private board: Square[][];
 
@@ -32,6 +32,11 @@ class Game implements ISubject {
 
     getState(): any {
         return this.state;
+    }
+
+    clickSquare(row: number, col: number): void {
+        const clickedSquare = this.board[row][col];
+        clickedSquare.click();
     }
 
     private generateBoard(): Square[][] {

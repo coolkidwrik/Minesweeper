@@ -10,4 +10,8 @@ export class NumberState implements ISquareState {
     reveal(): string {
         return this.number.toString();
     }
+
+    click(): void {
+        //TODO
+    }
 }
