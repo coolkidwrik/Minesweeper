@@ -7,12 +7,12 @@ import {MediumGameState} from "./MediumGameState";
 import {HardGameState} from "./HardGameState";
 
 export class Game implements ISubject {
-    private state: any; //IGameState
+    private state: IGameState;
     private observers: IObserver[] = [];
     private board: Square[][];
 
     constructor(newState: string) {
-        this.setState(newState);
+        this.state = this.setState(newState);
         this.board = this.generateBoard();
     }
 
@@ -34,6 +34,14 @@ export class Game implements ISubject {
         return this.state;
     }
 
+    getBoard(): Square[][] {
+        return this.board;
+    }
+
+    setBoard(value: Square[][]) {
+        this.board = value;
+    }
+
     clickSquare(row: number, col: number): void {
         const clickedSquare = this.board[row][col];
         clickedSquare.click();
@@ -44,13 +52,15 @@ export class Game implements ISubject {
     }
 
     // Set the state
-    private setState(newState: string): void {
+    private setState(newState: string): IGameState {
+        let state;
         if(newState === "Easy") {
-            this.state = new EasyGameState();
+            state = new EasyGameState(this);
         } else if(newState === "Medium") {
-            this.state = new MediumGameState();
+            state = new MediumGameState(this);
         } else {
-            this.state = new HardGameState();
+            state = new HardGameState(this);
         }
+        return state;
     }
 }

@@ -6,7 +6,7 @@ export class Square {
     private state: ISquareState;
     private gameBoard: Square[][];
 
-    constructor(row:number, col: number, initialState: ISquareState, board: Square[][]) {
+    constructor(row: number, col: number, initialState: ISquareState, board: Square[][]) {
         this.row = row;
         this.col = col;
         this.state = initialState;

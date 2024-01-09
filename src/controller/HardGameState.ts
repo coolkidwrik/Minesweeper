@@ -2,19 +2,20 @@ import {IGameState} from "./IGameState";
 import {Square} from "./Square";
 import {MineState} from "./MineState";
 import {NumberState} from "./NumberState";
+import {Game} from "./Game";
 
 export class HardGameState implements IGameState {
-
     rows: number = 20;
     cols: number = 24;
     numMines: number = 99;
+    private game: Game;
 
-    constructor() {
-        // TODO
-        return this;
+    constructor(game: Game) {
+        this.game = game;
     }
 
     generateBoard(): Square[][] {
+        //TODO: need to refactor this to match code for square
         const board: Square[][] = Array.from({ length: this.rows }, () =>
             Array.from({ length: this.cols }, () => new Square(new NumberState(0)))
         );
