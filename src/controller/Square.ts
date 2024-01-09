@@ -3,13 +3,12 @@ import {ISquareState} from "./ISquareState";
 export class Square {
     private readonly row: number;
     private readonly col: number;
-    private state: ISquareState;
+    private state: ISquareState | null = null;
     private gameBoard: Square[][];
 
-    constructor(row: number, col: number, initialState: ISquareState, board: Square[][]) {
+    constructor(row: number, col: number, board: Square[][]) {
         this.row = row;
         this.col = col;
-        this.state = initialState;
         this.gameBoard = board;
     }
 
@@ -21,7 +20,7 @@ export class Square {
         this.gameBoard = value;
     }
 
-    getState(): ISquareState {
+    getState(): ISquareState | null {
         return this.state;
     }
 
@@ -40,6 +39,8 @@ export class Square {
 
 
     click(): void {
-        this.state.click();
+        if (this.state) {
+            this.state.click();
+        }
     }
 }

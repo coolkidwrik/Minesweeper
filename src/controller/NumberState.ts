@@ -6,8 +6,9 @@ export class NumberState implements ISquareState {
     private number: number;
     private readonly square: Square
 
-    constructor(square: Square) {
-        this.number = this.generateNum(1, 8);
+    constructor(square: Square, numMines: number) {
+        // this.number = this.generateNum(1, 8);
+        this.number = numMines;
         this.square = square;
     }
 
