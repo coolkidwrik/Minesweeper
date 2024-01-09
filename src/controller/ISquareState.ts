@@ -1,4 +1,4 @@
 export interface ISquareState {
-    reveal(): string; // Method to reveal the state of the square
+    reveal():void; //reveals state on UI and changes state to revealed
     click(): void; // handles user click
 }
