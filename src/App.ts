@@ -1,53 +1,52 @@
-// // Create an instance of the game
-// import {Game} from "./controller/Game";
-// import {Square} from "./controller/Square";
-//
-// const minesweeperGame = new Game("Easy");
-//
-// // Render the initial board
-// renderBoard(minesweeperGame.getBoard());
-//
-// // Handle user input (click on a square)
-// document.getElementById("minesweeper-board")?.addEventListener("click", handleSquareClick);
-//
-// function handleSquareClick(event: MouseEvent): void {
-//     const target = event.target as HTMLDivElement;
-//
-//     // Check if the clicked element is a square on the board
-//     if (target.classList.contains("square")) {
-//         const row = Number(target.dataset.row);
-//         const col = Number(target.dataset.col);
-//
-//         // Perform game logic based on the clicked square
-//         minesweeperGame.clickSquare(row, col);
-//
-//         // Update the rendered board
-//         renderBoard(minesweeperGame.getBoard());
-//     }
-// }
-//
-// function renderBoard(board: Square[][]): void {
-//     const boardContainer = document.getElementById("minesweeper-board");
-//
-//     // Clear existing content
-//     if (boardContainer) {
-//         boardContainer.innerHTML = "";
-//     }
-//
-//     // Render the new board
-//     board.forEach((row, rowIndex) => {
-//         row.forEach((square, colIndex) => {
-//             const squareElement = document.createElement("div");
-//             squareElement.className = "square";
-//             squareElement.dataset.row = rowIndex.toString();
-//             squareElement.dataset.col = colIndex.toString();
-//
-//             // Customize the appearance based on the square state
-//             const squareState = square.reveal();
-//             squareElement.textContent = squareState;
-//
-//             // Add the square to the board container
-//             boardContainer?.appendChild(squareElement);
-//         });
-//     });
-// }
+import { Game } from "./controller/Game";
+import { FlagCounter } from "./controller/FlagCounter";
+
+class App {
+    private game: Game;
+    private flagCounter: FlagCounter;
+
+    constructor() {
+        this.flagCounter = new FlagCounter();
+        this.game = new Game("Medium"); // You can choose the difficulty here
+
+        // Register FlagCounter as an observer of the Game
+        this.game.addObserver(this.flagCounter);
+
+        // Initialize the game board and UI
+        this.initializeGame();
+
+        // Example: Simulate a user clicking on a square
+        this.game.clickSquare(0, 0);
+
+        // Example: Simulate placing a flag
+        this.flagCounter.incrementFlagCount();
+    }
+
+    private initializeGame(): void {
+        const boardContainer = document.getElementById("minesweeper-board");
+
+        if (boardContainer) {
+            const board = this.game.getBoard();
+
+            board.forEach((row, rowIndex) => {
+                row.forEach((square, colIndex) => {
+                    const squareElement = document.createElement("div");
+                    squareElement.className = "square";
+                    squareElement.dataset.row = rowIndex.toString();
+                    squareElement.dataset.col = colIndex.toString();
+
+                    // Customize the appearance based on the square state
+                    squareElement.textContent = ""; // Set the initial text content
+
+                    // Add the square to the board container
+                    boardContainer.appendChild(squareElement);
+                });
+            });
+        }
+    }
+
+
+}
+
+// Instantiate the App class when the script is loaded
+const app = new App();

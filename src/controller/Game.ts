@@ -45,6 +45,7 @@ export class Game implements ISubject {
     clickSquare(row: number, col: number): void {
         const clickedSquare = this.board[row][col];
         clickedSquare.click();
+
     }
 
     private generateBoard(): Square[][] {

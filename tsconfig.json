@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
   "compilerOptions": {
+    "lib": ["dom", "es2015"],
     "preserveConstEnums": true,
     "noImplicitAny": true,
     "outDir": "dist"
