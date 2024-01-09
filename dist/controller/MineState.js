@@ -12,6 +12,7 @@ class MineState {
         this.updateUI();
     }
     click() {
+        this.reveal();
         this.revealAllMines();
     }
     revealAllMines() {
@@ -19,7 +20,7 @@ class MineState {
         for (const row of board) {
             for (const square of row) {
                 if (square.getState() instanceof MineState) {
-                    square.getState().reveal();
+                    square.click();
                 }
             }
         }

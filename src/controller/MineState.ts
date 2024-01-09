@@ -15,6 +15,7 @@ export class MineState implements ISquareState {
     }
 
     click(): void {
+        this.reveal()
         this.revealAllMines();
     }
 
@@ -24,8 +25,11 @@ export class MineState implements ISquareState {
         for (const row of board) {
             for (const square of row) {
                 if (square.getState() instanceof MineState) {
-                    square.getState().reveal();
+                    square.click();
                 }
+                // if (square && square.getState() && square.getState() instanceof MineState) {
+                //     square.getState().reveal();
+                // }
             }
         }
     }

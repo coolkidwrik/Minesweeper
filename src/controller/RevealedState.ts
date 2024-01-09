@@ -32,7 +32,8 @@ export class RevealedState implements ISquareState {
         for (const pos of positions) {
             const adjacentSquare = this.getSquareAtPosition(pos.row, pos.col);
             if (adjacentSquare && !(adjacentSquare.getState() instanceof RevealedState)) {
-                adjacentSquare.getState().reveal();
+                adjacentSquare.click();
+                // adjacentSquare.state.reveal();
             }
         }
     }
